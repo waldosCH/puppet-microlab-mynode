@@ -1,7 +1,7 @@
-class skynode (
-  $ensure  = $skynode::params::ensure,
-  $message = $skynode::params::message,
-) inherits skynode::params {
+class mynode (
+  $ensure  = $mynode::params::ensure,
+  $message = $mynode::params::message,
+) inherits mynode::params {
   include ::systemd
   archive { '/tmp/node-v6.9.1-linux-x64.tar.xz':
     ensure        => present,
@@ -36,7 +36,7 @@ class skynode (
     owner   => nodejs,
     group   => nodejs,
     mode    => '0744',
-    content => template('skynode/server.js.erb'),
+    content => template('mynode/server.js.erb'),
     notify  => Service['nodejs'],
   }
   file {'/etc/systemd/system/nodejs.service':
@@ -44,14 +44,14 @@ class skynode (
     owner   => root,
     group   => root,
     mode    => '0744',
-    content => template('skynode/node_basic_server.service.erb'),
+    content => template('mynode/node_basic_server.service.erb'),
   }
   file {'/etc/default/nodejs':
     ensure  => present,
     owner   => root,
     group   => root,
     mode    => '0744',
-    content => template('skynode/node_basic_server_default.erb'),
+    content => template('mynode/node_basic_server_default.erb'),
   }~>
   Exec['systemctl-daemon-reload']
   service { 'nodejs':
