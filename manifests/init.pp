@@ -20,7 +20,7 @@ class mynode (
   user {'nodejs':
     ensure  => present,
     shell   => '/bin/bash',
-    home    => '/srv/nodejs',
+    home    => '/srv/node',
     groups  => ['users', 'nodejs',],
     require => Group['nodejs'],
   }
@@ -57,5 +57,4 @@ class mynode (
   service { 'nodejs':
     ensure => 'running',
   }
-
 }
