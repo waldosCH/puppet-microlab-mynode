@@ -10,7 +10,7 @@ Group=root
 # exist, it continues onward.
 EnvironmentFile=-/etc/default/nodejs
 EnvironmentFile=-/etc/sysconfig/nodejs
-ExecStart=/opt/node-v6.9.1-linux-x64/bin/node /srv/node/server.js 
+ExecStart=/opt/node-v6.9.1-linux-x64/bin/node /srv/node/server_<%= @name %>.js
 Restart=always
 WorkingDirectory=/
 
